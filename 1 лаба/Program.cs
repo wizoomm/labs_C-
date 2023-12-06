@@ -37,7 +37,6 @@ namespace laba1f
             int cols = int.Parse(Console.ReadLine());
             int[,] matrix = new int[rows, cols];
 
-            
             Random random = new Random();
             for (int i = 0; i < rows; i++)
             {
@@ -50,20 +49,14 @@ namespace laba1f
             Console.WriteLine("Исходная матрица:");
             PrintMatrix(matrix);
 
-            
             OrderMatrixRows(matrix);
 
             Console.WriteLine("Матрица после упорядочивания строк:");
             PrintMatrix(matrix);
-
-            
             int column = FindFirstColumnWithoutNegatives(matrix);
             Console.WriteLine("Номер первого столбца без отрицательных элементов: {0}", column);
-
             Console.ReadLine();
         }
-
-        
         static void PrintMatrix(int[,] matrix)
         {
             int rows = matrix.GetLength(0);
@@ -79,21 +72,17 @@ namespace laba1f
             }
             Console.WriteLine();
         }
-
-        
         static void OrderMatrixRows(int[,] matrix)
         {
             int rows = matrix.GetLength(0);
             int cols = matrix.GetLength(1);
-
-            // Сортируем строки
+            
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < rows - 1; j++)
                 {
                     int countJ = CountSameElements(matrix, j);
                     int countJplus1 = CountSameElements(matrix, j + 1);
-
                     if (countJ > countJplus1)
                     {
                         SwapRows(matrix, j, j + 1);
@@ -101,8 +90,6 @@ namespace laba1f
                 }
             }
         }
-
-        
         static int CountSameElements(int[,] matrix, int row)
         {
             int cols = matrix.GetLength(1);
@@ -118,15 +105,11 @@ namespace laba1f
                     }
                 }
             }
-
             return count;
         }
-
-        
         static void SwapRows(int[,] matrix, int row1, int row2)
         {
             int cols = matrix.GetLength(1);
-
             for (int i = 0; i < cols; i++)
             {
                 int temp = matrix[row1, i];
@@ -134,17 +117,13 @@ namespace laba1f
                 matrix[row2, i] = temp;
             }
         }
-
-        
         static int FindFirstColumnWithoutNegatives(int[,] matrix)
         {
             int rows = matrix.GetLength(0);
             int cols = matrix.GetLength(1);
-
             for (int j = 0; j < cols; j++)
             {
                 bool containsNegative = false;
-
                 for (int i = 0; i < rows; i++)
                 {
                     if (matrix[i, j] < 0)
@@ -153,18 +132,13 @@ namespace laba1f
                         break;
                     }
                 }
-
                 if (!containsNegative)
                 {
                     return j;
                 }
             }
-
             return -1;
         }
-
-
-
         static void PrintVector(IEnumerable<int> vector)
             {
                 Console.WriteLine(string.Join(" ", vector));
